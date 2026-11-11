@@ -1,14 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Lee el input con el New Input System y lo expone como propiedades simples.
-/// Las acciones se crean por código para no depender de un asset .inputactions.
-/// (Cuando el proyecto crezca, lo normal es migrar a un asset para soportar rebinding.)
-///
-/// OJO: se llama PlayerInputReader y no PlayerInput porque Unity ya tiene un
-/// componente PlayerInput en el namespace UnityEngine.InputSystem.
-/// </summary>
 public class PlayerInputReader : MonoBehaviour
 {
     InputAction move;
@@ -16,13 +8,13 @@ public class PlayerInputReader : MonoBehaviour
     InputAction jump;
     InputAction fire;
 
-    // Estado continuo
+    
     public Vector2 Move => move.ReadValue<Vector2>();
-    public Vector2 Look => look.ReadValue<Vector2>();   // delta del ratón en píxeles/frame
+    public Vector2 Look => look.ReadValue<Vector2>();
     public bool JumpHeld => jump.IsPressed();
     public bool FireHeld => fire.IsPressed();
 
-    // Eventos de un solo frame (válidos si se leen en Update)
+    
     public bool JumpPressed => jump.WasPressedThisFrame();
     public bool JumpReleased => jump.WasReleasedThisFrame();
     public bool FirePressed => fire.WasPressedThisFrame();
